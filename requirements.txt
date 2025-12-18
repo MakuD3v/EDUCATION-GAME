@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+pydantic
+python-jose[cryptography]
+passlib[bcrypt]
+aiohttp
+pygame
+websockets
