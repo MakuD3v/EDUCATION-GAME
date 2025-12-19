@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDU PARTY: Educational Mayhem</title>
+    <!-- Google Fonts: Outfit for modern game look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="background-animation"></div>
+    <div id="app">
+        <!-- LAUNCHER SECTION -->
+        <div id="launcher-container" class="glass-panel">
+            <header>
+                <div class="logo-container">
+                    <h1>EDU PARTY</h1>
+                    <span class="subtitle">EDUCATIONAL MAYHEM</span>
+                </div>
+                <div id="connection-status" class="status-badge connecting">Connecting...</div>
+            </header>
+
+            <!-- VIEW: LOGIN -->
+            <div id="view-login" class="view active">
+                <div class="launcher-card">
+                    <h2>Student Login</h2>
+                    <input type="text" id="username-input" placeholder="Enter Name" maxlength="12">
+                    <button class="btn-primary" onclick="app.login()">Launch</button>
+                </div>
+            </div>
+
+            <!-- VIEW: MENU -->
+            <div id="view-menu" class="view">
+                <div class="launcher-grid">
+                    <div class="profile-card">
+                        <h3>My Profile</h3>
+                        <p id="player-name-display">Student</p>
+                        <div class="stats">ELO: 1000</div>
+                    </div>
+                    <div class="action-card">
+                        <button class="btn-large" onclick="app.createLobby()">Create Party</button>
+                        <input type="text" id="join-code-input" placeholder="Room Code">
+                        <button class="btn-large" onclick="app.joinLobby()">Join Party</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: LOBBY -->
+            <div id="view-lobby" class="view">
+                <div class="launcher-card">
+                    <div class="lobby-header">
+                        <h2>Lobby <span id="lobby-code-display">????</span></h2>
+                        <button class="btn-small" onclick="location.reload()">Exit</button>
+                    </div>
+                    <div id="player-list" class="scroller">
+                        <!-- Players -->
+                    </div>
+                    <div id="host-controls" style="display: none;">
+                        <button class="btn-start" onclick="app.startGame()">START GAME</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- GAME SECTION (Hidden until start) -->
+        <div id="game-container" style="display: none;">
+            <div class="game-hud">
+                <div id="round-display">Round 1</div>
+                <div id="timer-display">30s</div>
+            </div>
+
+            <div class="game-viewport">
+                <h2 id="instruction-display">Waiting for server...</h2>
+                <div id="input-area">
+                    <input type="text" id="game-input" placeholder="Type Answer Here...">
+                    <button onclick="app.submitInput()">SEND</button>
+                </div>
+                <div id="feedback-display"></div>
+            </div>
+
+            <!-- POPUP -->
+            <div id="game-popup" class="popup">
+                <div class="popup-content">
+                    <h3 id="popup-title">Round Start!</h3>
+                    <p id="popup-msg">Instructions go here.</p>
+                    <button onclick="app.dismissPopup()">GO!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW: RESULT -->
+        <div id="view-result" class="view">
+            <div class="card">
+                <h2 id="winner-display">Winner: ???</h2>
+                <button onclick="location.reload()">Back to Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

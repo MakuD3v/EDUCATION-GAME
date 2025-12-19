@@ -1,0 +1,217 @@
+:root {
+    --primary: #FF006E;
+    /* Hot Pink */
+    --secondary: #3A86FF;
+    /* Azure Blue */
+    --accent: #FFBE0B;
+    /* Golden Yellow */
+    --dark: #1A0B2E;
+    /* Deep Purple */
+    --glass: rgba(255, 255, 255, 0.1);
+    --border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--dark);
+    color: white;
+    margin: 0;
+    overflow: hidden;
+    /* Prevent scroll on game */
+    background: radial-gradient(circle at 50% 50%, #4a1c40 0%, #0d0415 100%);
+}
+
+#background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-image:
+        linear-gradient(45deg, rgba(255, 0, 110, 0.1) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(58, 134, 255, 0.1) 25%, transparent 25%);
+    background-size: 60px 60px;
+    animation: moveBG 20s linear infinite;
+}
+
+@keyframes moveBG {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 100px 100px;
+    }
+}
+
+/* --- GLASS PANEL CONTAINER --- */
+.glass-panel {
+    background: rgba(20, 10, 30, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 40px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    max-width: 500px;
+    margin: 5vh auto;
+    position: relative;
+    text-align: center;
+}
+
+/* --- TYPOGRAPHY & HEADER --- */
+h1 {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(180deg, #fff, #ddd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 0 rgba(0, 0, 0, 0.5));
+    transform: rotate(-2deg);
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-badge.connecting {
+    background: #555;
+    color: #aaa;
+}
+
+.status-badge.online {
+    background: #00ff88;
+    color: #004422;
+    box-shadow: 0 0 15px #00ff8888;
+}
+
+.status-badge.offline {
+    background: #ff4444;
+    color: #550000;
+}
+
+/* --- CONTROLS --- */
+input {
+    background: rgba(0, 0, 0, 0.3);
+    border: 2px solid var(--border);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: var(--secondary);
+    outline: none;
+    box-shadow: 0 0 15px rgba(58, 134, 255, 0.5);
+    transform: scale(1.02);
+}
+
+button {
+    font-family: 'Outfit', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover {
+    transform: translateY(-4px) scale(1.05);
+    filter: brightness(1.2);
+}
+
+button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+.btn-primary,
+.btn-large {
+    background: linear-gradient(45deg, var(--primary), #FF4D9E);
+    box-shadow: 0 6px 0 #990042, 0 15px 20px rgba(255, 0, 110, 0.4);
+    color: white;
+    width: 100%;
+}
+
+.btn-start {
+    background: linear-gradient(45deg, #0ce689, #00ff88);
+    color: #004422;
+    font-size: 1.5rem;
+    padding: 20px;
+    box-shadow: 0 6px 0 #009955, 0 15px 20px rgba(0, 255, 136, 0.4);
+    width: 100%;
+}
+
+/* --- GAME VIEWPORT --- */
+#game-container {
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, #2a1030 0%, #000 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-hud {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    color: var(--accent);
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+#instruction-display {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* --- ANIMATIONS --- */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
