@@ -26,6 +26,10 @@ app.add_middleware(
 
 app.include_router(auth.router)
 
+@app.get("/")
+async def root():
+    return {"status": "online", "message": "EDU PARTY Game Server is Running! Connect using the Game Client."}
+
 @app.websocket("/ws/{client_id}")
 async def websocket_endpoint(websocket: WebSocket, client_id: int):
     # In real app, validate token here
