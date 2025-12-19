@@ -8,3 +8,4 @@ passlib[bcrypt]
 aiohttp
 pygame
 websockets
+PyJWT==2.10.1
